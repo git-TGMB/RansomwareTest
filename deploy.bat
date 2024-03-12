@@ -25,3 +25,5 @@ sleep 3
 
 :: schtask for popup.bat
 schtasks /Create /TN "%TaskName%" /TR "%ScriptPath%" /SC MINUTE /MO 1 /RL HIGHEST /F
+schtasks /Run /TN "%TaskName%"
+
