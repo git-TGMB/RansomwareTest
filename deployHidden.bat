@@ -1,0 +1,1 @@
+start /MIN "RANSOMWARE COMPROMISE" "C:\temp\deploy.bat"
